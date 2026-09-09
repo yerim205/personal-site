@@ -312,6 +312,26 @@
     .pub-authors strong { color: var(--accent); font-weight: 500; }
     .pub-authors em { color: var(--muted); font-style: italic; }
 
+    /* under-review variant */
+    .pub.review::before { background: linear-gradient(var(--muted), transparent); opacity: 0.6; }
+    .pub.review .pub-title { color: var(--ink-soft); }
+    .pub.review .pub-venue { color: var(--muted); }
+    .badge {
+      display: inline-block;
+      margin-left: 0.6rem;
+      padding: 0.12rem 0.6rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 100px;
+      vertical-align: middle;
+      background: rgba(255,255,255,0.4);
+    }
+
     /* CONTACT */
     .contact-inner .lead {
       font-family: 'Newsreader', serif;
@@ -334,6 +354,28 @@
       padding-bottom: 3px;
     }
     .contact-email:hover { color: var(--accent); background-size: 100% 1px; }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.75rem;
+      margin-top: 1.6rem;
+    }
+    .contact-links a {
+      font-size: 0.85rem;
+      color: var(--muted);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.25s;
+    }
+    .contact-links a::after {
+      content: '';
+      position: absolute; left: 0; bottom: -3px;
+      width: 0; height: 1px; background: var(--accent);
+      transition: width 0.28s ease;
+    }
+    .contact-links a:hover { color: var(--ink); }
+    .contact-links a:hover::after { width: 100%; }
 
     footer {
       text-align: center;
@@ -418,6 +460,13 @@
   <div class="section-grid">
     <div class="section-label">Publications</div>
     <div>
+      <div class="pub review">
+        <div class="pub-venue">KDD <span class="year">· 2026</span> <span class="badge">Under review</span></div>
+        <div class="pub-title">Decoupled Semantic Compression: KV Cache Eviction with Semantic Localization and Selection</div>
+        <div class="pub-authors"><strong>Yerim Kim</strong>, Wonjun Choi, Yukyung Lee, and Susik Yoon.<br>
+        <em>Under review at KDD 2026</em></div>
+      </div>
+
       <div class="pub">
         <div class="pub-venue">EMNLP <span class="year">· 2026</span></div>
         <div class="pub-title"><a href="https://arxiv.org/abs/2608.01708" target="_blank">PGMem: Tightly Coupled Persona–Memory Graph for Lifelong Personalized Agents</a></div>
@@ -502,6 +551,10 @@
     <div class="contact-inner">
       <p class="lead">Open to research collaborations and conversations.</p>
       <a href="mailto:yearim205@gmail.com" class="contact-email">yearim205@gmail.com</a>
+      <div class="contact-links">
+        <a href="https://scholar.google.com/citations?hl=ko&user=ojtb9pQAAAAJ" target="_blank">Google Scholar →</a>
+        <a href="https://github.com/yerim205" target="_blank">GitHub →</a>
+      </div>
     </div>
   </div>
 </div>
