@@ -11,15 +11,15 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
-      --ink:       #16272f;
-      --ink-soft:  #3d5760;
-      --muted:     #6f8a95;
-      --line:      rgba(140, 175, 195, 0.30);
-      --sky:       #bcd8e6;
-      --sky-soft:  #d9e9f1;
-      --accent:    #2c6a86;
-      --accent-lt: #4a90ad;
-      --paper:     #eef4f7;
+      --ink:       #26313a;
+      --ink-soft:  #4d5c66;
+      --muted:     #8091a0;
+      --line:      rgba(120, 145, 165, 0.22);
+      --sky:       #c3dbe8;
+      --sky-soft:  #e2edf3;
+      --accent:    #3a7a99;
+      --accent-lt: #6aa8c4;
+      --paper:     #eef1f3;
     }
 
     html { scroll-behavior: smooth; }
@@ -30,13 +30,46 @@
       font-weight: 300;
       line-height: 1.6;
       position: relative;
-      background:
-        radial-gradient(1000px 720px at 82% -8%, rgba(150, 194, 216, 0.55), transparent 58%),
-        radial-gradient(760px 620px at -5% 8%, rgba(200, 224, 236, 0.6), transparent 55%),
-        linear-gradient(180deg, #eef5f8 0%, #e6f0f4 50%, #edf4f7 100%);
-      background-attachment: fixed;
+      background: #eef1f3;
       -webkit-font-smoothing: antialiased;
     }
+
+    /* soft aurora — very gentle misty fields, cool with a faint warm breath */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -20%;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(42% 46% at 18% 14%, rgba(170, 206, 226, 0.34), transparent 62%),
+        radial-gradient(44% 48% at 86% 24%, rgba(198, 214, 226, 0.36), transparent 64%),
+        radial-gradient(50% 54% at 72% 86%, rgba(182, 204, 216, 0.30), transparent 66%),
+        radial-gradient(42% 48% at 10% 82%, rgba(216, 208, 196, 0.20), transparent 64%);
+      filter: blur(34px) saturate(1.02);
+      animation: aurora 30s ease-in-out infinite alternate;
+    }
+
+    @keyframes aurora {
+      0%   { transform: translate3d(0, 0, 0) scale(1) rotate(0deg); }
+      50%  { transform: translate3d(1.5%, -1%, 0) scale(1.06) rotate(0.8deg); }
+      100% { transform: translate3d(-1.5%, 1.5%, 0) scale(1.04) rotate(-0.8deg); }
+    }
+
+    /* fine grain texture — tactile, paper-like depth */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0.045;
+      mix-blend-mode: multiply;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    }
+
+    /* keep real content above the background layers */
+    nav, .hero, .section, footer { position: relative; z-index: 2; }
 
     /* page-load reveal — one orchestrated moment */
     .reveal { opacity: 0; transform: translateY(16px); animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
@@ -45,8 +78,16 @@
     .reveal.d3 { animation-delay: 0.25s; }
     .reveal.d4 { animation-delay: 0.35s; }
     @keyframes rise { to { opacity: 1; transform: translateY(0); } }
+
+    /* scroll reveal — sections ease in as they enter view */
+    .section { opacity: 1; transform: none; }
+    .js .section { opacity: 0; transform: translateY(28px); transition: opacity 0.8s cubic-bezier(0.22,1,0.36,1), transform 0.8s cubic-bezier(0.22,1,0.36,1); }
+    .js .section.in-view { opacity: 1; transform: none; }
+
     @media (prefers-reduced-motion: reduce) {
       .reveal { opacity: 1; transform: none; animation: none; }
+      .js .section { opacity: 1; transform: none; transition: none; }
+      body::before { animation: none; }
     }
 
     /* NAV */
@@ -55,7 +96,7 @@
       justify-content: space-between;
       align-items: baseline;
       padding: 1.4rem 3rem;
-      background: rgba(238, 245, 248, 0.7);
+      background: rgba(238, 241, 243, 0.74);
       backdrop-filter: blur(16px) saturate(1.2);
       -webkit-backdrop-filter: blur(16px) saturate(1.2);
       border-bottom: 1px solid var(--line);
@@ -167,7 +208,7 @@
       display: block;
       border-radius: 6px;
       border: 5px solid #fff;
-      box-shadow: 0 24px 60px -24px rgba(44, 106, 134, 0.55);
+      box-shadow: 0 24px 60px -24px rgba(58, 100, 125, 0.38);
     }
 
     /* SECTIONS */
@@ -242,7 +283,7 @@
 
     .pills { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.9rem; }
     .pills span {
-      background: rgba(174, 205, 222, 0.25);
+      background: rgba(180, 204, 216, 0.24);
       padding: 0.22rem 0.75rem;
       font-size: 0.74rem;
       border-radius: 100px;
@@ -461,10 +502,10 @@
     <div class="section-label">Publications</div>
     <div>
       <div class="pub review">
-        <div class="pub-venue">KDD <span class="year">· 2026</span> <span class="badge">Under review</span></div>
+        <div class="pub-venue">KDD <span class="year">· 2027</span> <span class="badge">Under review</span></div>
         <div class="pub-title">Decoupled Semantic Compression: KV Cache Eviction with Semantic Localization and Selection</div>
         <div class="pub-authors"><strong>Yerim Kim</strong>, Wonjun Choi, Yukyung Lee, and Susik Yoon.<br>
-        <em>Under review at KDD 2026</em></div>
+        <em>Under review at KDD 2027</em></div>
       </div>
 
       <div class="pub">
@@ -560,6 +601,29 @@
 </div>
 
 <footer><span class="mark">Yerim Kim</span> · © 2025</footer>
+
+<script>
+  // enable JS-only reveal styles (graceful fallback if JS is off)
+  document.documentElement.classList.add('js');
+  document.body.classList.add('js');
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const sections = document.querySelectorAll('.section');
+
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    sections.forEach(s => s.classList.add('in-view'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('in-view');
+          io.unobserve(e.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    sections.forEach(s => io.observe(s));
+  }
+</script>
 
 </body>
 </html>
