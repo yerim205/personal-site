@@ -364,6 +364,13 @@
     .pub-authors { color: var(--ink-soft); font-size: 0.88rem; line-height: 1.65; }
     .pub-authors strong { color: var(--accent); font-weight: 500; }
     .pub-authors em { color: var(--muted); font-style: italic; }
+    .pub-authors .award {
+      display: inline-block;
+      margin-top: 0.45rem;
+      font-style: normal;
+      color: #b07a2e;
+      font-weight: 500;
+    }
 
     /* under-review variant */
     .pub.review::before { background: linear-gradient(var(--muted), transparent); opacity: 0.6; }
@@ -384,6 +391,21 @@
       vertical-align: middle;
       background: rgba(255,255,255,0.4);
     }
+    .badge.award {
+      color: #8a5a2b;
+      border-color: rgba(180, 130, 70, 0.45);
+      background: linear-gradient(rgba(224, 190, 130, 0.22), rgba(214, 172, 110, 0.28));
+    }
+    .award-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+      font-size: 0.82rem;
+      color: #8a5a2b;
+      font-weight: 400;
+    }
+    .award-note::before { content: '★'; font-size: 0.8rem; }
 
     /* CONTACT */
     .contact-inner .lead {
@@ -536,6 +558,14 @@
         <div class="pub-title"><a href="https://arxiv.org/abs/2608.01708" target="_blank">PGMem: Tightly Coupled Persona–Memory Graph for Lifelong Personalized Agents</a></div>
         <div class="pub-authors">Wonjun Choi, <strong>Yerim Kim</strong>, Yukyung Lee, and Susik Yoon.<br>
         <em>Empirical Methods in Natural Language Processing (EMNLP), 2026</em></div>
+      </div>
+
+      <div class="pub">
+        <div class="pub-venue">Korea Computer Congress (KCC) <span class="year">· 2026</span></div>
+        <div class="pub-title"><a href="https://www.dbpia.co.kr/journal/articleDetail?nodeId=NODE12929330" target="_blank">LLM Key-Value Cache Optimization via Layer Profiling and Prototype Similarity</a></div>
+        <div class="pub-authors"><strong>Yerim Kim</strong>, Wonjun Choi, Yukyung Lee, and Susik Yoon.<br>
+        <em>Korean Institute of Information Scientists and Engineers (KIISE), 2026</em><br>
+        <span class="award">★ Best Paper Award</span></div>
       </div>
 
       <div class="pub">
